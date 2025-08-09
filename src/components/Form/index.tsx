@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import { User, Mail, CreditCard, ChevronLeft, ChevronRight, Check } from 'lucide-react'
 
 import { validateEmpty } from '../../helpers/validator'
+import SimpleButton from '../atoms/button/SimpleButton'
 
 const steps = [
 	{ title: 'Personal Info', icon: User, fields: ['firstName', 'lastName', 'age'] },
@@ -273,31 +274,29 @@ const StepForm = () => {
 			{renderFormContent()}
 
 			<div className="flex flex-row justify-between mt-8">
-				<button
+				<SimpleButton
 					onClick={handlePrevious}
 					disabled={current === 0}
-					className="flex items-center px-4 py-2 text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+					variant='disabled'
 				>
 					<ChevronLeft /> Previous
-				</button>
+				</SimpleButton>
 
 				{current === steps.length - 1 ? (
-					<button
+					<SimpleButton
 						onClick={handleSubmit}
-						type="button"
 						className="flex items-center px-4 py-2 text-white bg-green-500 rounded-lg hover:bg-green-600 transition-colors"
 					>
 						Submit Form <Check className="ml-2" />
-					</button>
+					</SimpleButton>
 				) : (
-					<button
+					<SimpleButton
 						disabled={hasError()}
 						onClick={handleNext}
-						type="button"
-						className="flex items-center px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition-colors"
+						variant='primary'
 					>
 						Next <ChevronRight className="ml-2" />
-					</button>
+					</SimpleButton>
 				)}
 			</div>
 		</div>
