@@ -3,6 +3,7 @@ import { User, Mail, CreditCard, ChevronLeft, ChevronRight, Check } from 'lucide
 
 import { validateEmpty } from '../../helpers/validator'
 import SimpleButton from '../atoms/button/SimpleButton'
+import StepTitle from '../molecules/StepTitle'
 
 const steps = [
 	{ title: 'Personal Info', icon: User, fields: ['firstName', 'lastName', 'age'] },
@@ -258,14 +259,11 @@ const StepForm = () => {
 					const isActive = current === index
 					return (
 						<div key={index} className="flex flex-col items-center">
-							<div
-								className={`w-12 h-12 flex items-center justify-center rounded-full mb-2 ${
-									isActive ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-500'
-								}`}
-							>
-								<StepIcon className="w-6 h-6" />
-							</div>
-							<span className={isActive ? 'text-blue-600 font-medium' : 'text-gray-500'}>{step.title}</span>
+							<StepTitle 
+								icon={<StepIcon className="w-6 h-6" />}
+								isActive
+								title={<span className={isActive ? 'text-blue-600 font-medium' : 'text-gray-500'}>{step.title}</span>}
+							/>
 						</div>
 					)
 				})}
