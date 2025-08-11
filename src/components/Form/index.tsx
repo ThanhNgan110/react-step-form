@@ -251,7 +251,7 @@ const StepForm = () => {
 	}
 
 	return (
-		<div className="max-w-3xl p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+		<div className="mx-auto max-w-3xl p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
 			<h1 className="text-2xl text-center font-bold mb-8">useRef Stepper Form Demo</h1>
 			<div className="flex flex-row justify-between mb-8">
 				{steps.map((step, index) => {
@@ -259,9 +259,9 @@ const StepForm = () => {
 					const isActive = current === index
 					return (
 						<div key={index} className="flex flex-col items-center">
-							<StepTitle 
+							<StepTitle
 								icon={<StepIcon className="w-6 h-6" />}
-								isActive
+								isActive={isActive}
 								title={<span className={isActive ? 'text-blue-600 font-medium' : 'text-gray-500'}>{step.title}</span>}
 							/>
 						</div>
@@ -272,11 +272,7 @@ const StepForm = () => {
 			{renderFormContent()}
 
 			<div className="flex flex-row justify-between mt-8">
-				<SimpleButton
-					onClick={handlePrevious}
-					disabled={current === 0}
-					variant='disabled'
-				>
+				<SimpleButton onClick={handlePrevious} disabled={current === 0} variant="disabled">
 					<ChevronLeft /> Previous
 				</SimpleButton>
 
@@ -288,11 +284,7 @@ const StepForm = () => {
 						Submit Form <Check className="ml-2" />
 					</SimpleButton>
 				) : (
-					<SimpleButton
-						disabled={hasError()}
-						onClick={handleNext}
-						variant='primary'
-					>
+					<SimpleButton disabled={hasError()} onClick={handleNext} variant="primary">
 						Next <ChevronRight className="ml-2" />
 					</SimpleButton>
 				)}
